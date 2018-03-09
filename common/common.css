@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+     -webkit-tap-highlight-color:rgba(255,255,255,0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    text-align: left;
+    font-family: Arial, Microsoft Yahei, serif;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: #000000;
+    height: 100%;
+    overflow: hidden;
+    cursor: default;
+}
+
+input,
+select {
+    outline: none;
+    border: none;
+    font-size: 14px;
+}
+
+div,
+form,
+img,
+button,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.ovhidden {
+    overflow: hidden;
+}
+
+.clear {
+    *zoom: 1;
+}
+
+.clear:after {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+    content: "";
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+
+
+
+
+/* 页面容器 */
+
+#fishCanvas {
+    position: absolute;
+/*
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+*/
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: black;
+}
+
+/* index.php */
+#loading , #choosefish {
+    width: 100%;
+    height: 100%;
+    background: url(../image/readyBg.jpg) no-repeat 100% 100%;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+#choosefish .title {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+    font-size: 5vw;
+}
+#choosefish button#btn {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+    font-size: 5vw;
+    background-color: #aaa;
+    padding: 2vw 10vw;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+#choosefish button#btn.active {
+    background-color: indianred;
+}
+#choosefish .blueLoad , #choosefish .goldLoad {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 40%;
+    border: 3px solid transparent;
+    padding: 10px;
+    border-radius: 20px;
+}
+#choosefish .blueLoad.active , #choosefish .goldLoad.active {
+    border-color: indianred;
+}
+#choosefish .blueLoad {
+    left: 55%;
+}
+#choosefish .goldLoad {
+    left: 15%;
+}
+#choosefish .goldLoad>img {
+    width: 100%;
+    transform: scaleX(-1);
+}
+#choosefish .blueLoad>img {
+    width: 100%;
+}
+
+
+#loading .blueLoad , #loading .goldLoad {
+    width: 70%;
+    position: absolute;
+    left: 15%;
+    top: 45%;
+}
+#loading .blueLoad>img , #loading .goldLoad>img {
+    width: 20%;
+    margin-right: 5%;
+    float: left;
+}
+#loading .blueLoad>div , #loading .goldLoad>div {
+    width: 75%;
+    height: 6vh;
+    background: url(../image/loadingBg.png) no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    margin-top: 1vh;
+    position: relative;
+}
+#loading .blueLoad>div img , #loading .goldLoad>div img {
+    width: 0%;
+    height: 5.2vh;
+    margin: 0.4vh 0 0.4vh 2%;
+    border-radius: 50%;
+/*    max-width: 96%;*/
+}
+#loading p.countDown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#loading p.countDown img {
+    width: 100%;
+    transform: scale(0.5);
+}
+#loading .progress .progressNum {
+    color: #fff;
+    position: absolute;
+    z-index: 9;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 4vw;
+    
+}
+
+#game_over {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    z-index: 9999;
+}
+#game_over span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#game_over .lose {
+    background: url('../image/game_lose.png') no-repeat;
+    background-size: 100%;
+}
+#game_over .win {
+    background: url('../image/game_win.png') no-repeat;
+    background-size: 100%;
+}
+.music {
+    z-index: 90;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10%;
+    right: 1%;
+}
+
+.music .icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(../image/audio.png) no-repeat;
+    background-size: 25px 25px;
+}
+
+.music.play .icon {
+    -webkit-animation: reveZ 1.2s linear infinite;
+}
+
+@-webkit-keyframes reveZ {
+    0% {
+        -webkit-transform: rotateZ(0deg);
+    }
+    100% {
+        -webkit-transform: rotateZ(360deg);
+    }
+}
+
+

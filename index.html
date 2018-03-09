@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>大鱼吃小鱼</title>
+    <link rel="stylesheet" href="common/common.css?<?php echo time();?>">
+    <script src="common/jquery-1.8.3.min.js"></script>
+    <script src="common/reconnecting-websocket.min.js"></script>
+    <script src="common/sha1.js"></script>
+    <script src="common/createjs-2015.11.26.min.js"></script>
+    <script src="common/collision.js"></script>
+</head>
+
+<body>
+    <div class="container">
+       <div class="music icon">
+                <audio id="song" src="common/bg.mp3" loop="loop" autoplay="autoplay" preload="auto"></audio>
+                <i class="icon"></i>
+        </div>
+        <div><audio id="eatMP3" src="common/eat.mp3" preload="auto"></audio></div>
+        <div id="game_over" class="hidden"><span></span></div>
+        <canvas id="fishCanvas"></canvas>
+        <div id="choosefish">
+           <span class="title">选择你的鱼</span>
+            <div class="choose">
+               <span class="blueLoad" data-num="2"><img src="image/blueFish1.png"></span>
+                <span class="goldLoad" data-num="1"><img src="image/goldFish1.png"></span> 
+            </div>
+            <button id="btn">确认</button>
+        </div>
+        <div id="loading" class="hidden">
+           <div>
+                <div class="blueLoad prople2 hidden">
+                    <img src="image/blueFish1.png">
+                    <div class="progress">
+                        <img src="image/loading_b.png">
+                        <span class="progressNum">0%</span>
+                    </div>
+                </div>
+                <div class="goldLoad prople1 hidden">
+                    <img src="image/goldFish1.png">
+                    <div class="progress">
+                        <img src="image/loading_r.png">
+                        <span class="progressNum">0%</span>
+                    </div>
+                </div>
+            </div>
+            <p class="countDown hidden">
+                <img src="image/time_3.png">
+            </p>
+        </div>
+    </div>
+    <script>
+        var prople,
+            allFishList = new Array(),
+            roundFish = new Array(),
+            countNumStr = 0,
+            myInfo = {},
+            youInfo = {};
+        
+        window.onload = function(){
+            (function(){
+                var audio = document.getElementById("song");
+                var eat = document.getElementById("eatMP3");
+                audio.play();
+                eat.play();
+                setTimeout(function(){
+                    eat.pause();
+                },0);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    audio.play();
+                    eat.play();
+                    setTimeout(function(){
+                        eat.pause();
+                    },0);
+                }, false);
+            })();
+            
+            $('div.music').addClass('play');
+        }
+        
+        $('#choosefish .choose>span').on('click',function(){
+           $(this).addClass('active').siblings().removeClass('active');
+            if(!$('#choosefish #btn').hasClass('active')){
+                $('#choosefish #btn').addClass('active');
+            }
+        });
+        $('#choosefish #btn').on('click',function(){
+           if($(this).hasClass('active')){
+               prople = $('#choosefish .choose>span.active').attr('data-num');
+               $('#choosefish').hide();
+               $('#loading').show();
+               $('#loading .prople'+prople).show();
+               
+               loading();
+           }
+        });
+        
+        $('div.music').click(function(e){ // 播放按钮切换状态
+            if($(this).hasClass('play')){
+                $(this).removeClass('play');
+                document.getElementById("song").pause();
+            }else{
+                $(this).addClass('play');
+                document.getElementById("song").play();
+            }
+        });
+        
+        $(document).on('touchmove','body', function (event) { // 禁止页面滑动
+            event.preventDefault();
+        });
+    </script>
+    <script src="index.js?<?php echo time();?>"></script>
+</body>
+
+</html>
